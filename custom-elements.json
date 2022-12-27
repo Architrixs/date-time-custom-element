@@ -4,16 +4,16 @@
   "modules": [
     {
       "kind": "javascript-module",
-      "path": "src/custom-element.ts",
+      "path": "src/date-time.ts",
       "declarations": [
         {
           "kind": "class",
-          "description": "An example Custom Element. This documentation ends up in the\nREADME so describe how this elements works here.\n\nYou can event add examples on the element is used with Markdown.\n\n```\n<custom-element></custom-element>\n```",
-          "name": "CustomElementElement",
+          "description": "An example Custom Element. This documentation ends up in the\nREADME so describe how this elements works here.\n\nYou can event add examples on the element is used with Markdown.\n\n```\n<date-time></date-time>\n```",
+          "name": "DateTimeElement",
           "superclass": {
             "name": "HTMLElement"
           },
-          "tagName": "custom-element",
+          "tagName": "date-time",
           "customElement": true
         }
       ],
@@ -22,16 +22,16 @@
           "kind": "js",
           "name": "default",
           "declaration": {
-            "name": "CustomElementElement",
-            "module": "src/custom-element.ts"
+            "name": "DateTimeElement",
+            "module": "src/date-time.ts"
           }
         },
         {
-          "kind": "custom-element-definition",
-          "name": "custom-element",
+          "kind": "date-time-definition",
+          "name": "date-time",
           "declaration": {
-            "name": "CustomElementElement",
-            "module": "src/custom-element.ts"
+            "name": "DateTimeElement",
+            "module": "src/date-time.ts"
           }
         }
       ]

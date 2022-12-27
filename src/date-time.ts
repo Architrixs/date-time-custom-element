@@ -12,11 +12,17 @@
 //customElements.define('current-time', DateTime);
 
 // The class for the custom element
-export class DateTime extends HTMLElement {
+export class DateTimeElement extends HTMLElement {
   public shadowRoot: ShadowRoot;
   private dateElement: HTMLElement;
   private timeElement: HTMLElement;
-
+  private culture: string = 'en-US';
+  private dateFormat: string = '';
+  private timeFormat: string = '';
+  // Observe the format attribute for changes
+  static get observedAttributes(): string[] {
+    return ['date-format', 'time-format', 'culture'];
+  }
   constructor() {
     super();
 
@@ -27,7 +33,15 @@ export class DateTime extends HTMLElement {
     const template = document.createElement('template');
     template.innerHTML = `
       <style>
-        /* Style for the custom element */
+        #time-container {
+          display: flex;
+          align-items: center;
+          font-size: 1em;
+          font-family: system-ui;
+        }
+        #date {
+          margin-right: 1em;
+        }
       </style>
       <div id="time-container">
         <!-- Display the current date and time -->
@@ -42,10 +56,65 @@ export class DateTime extends HTMLElement {
     this.timeElement = this.shadowRoot.querySelector('#time')!;
   }
 
+  // Update the element when the format attribute changes
+  attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
+    if ((name === 'date-format' || name === 'time-format') && newValue !== oldValue) {
+      // Get the current values of the date-format and time-format attributes
+      this.dateFormat = this.getAttribute('date-format') || '';
+      this.timeFormat = this.getAttribute('time-format') || '';
+      this.culture = this.getAttribute('culture') || 'en-US';
+      // Update the formatted date and time values using the new formats
+      this.updateFormattedDate(this.dateFormat);
+      this.updateFormattedTime(this.timeFormat);
+
+      // Update the element every second
+      setInterval(() => {
+        this.updateFormattedDate(this.dateFormat);
+        this.updateFormattedTime(this.timeFormat);
+      }, 1000);
+    }
+  }
+
+  private updateFormattedTime(format: string): void {
+    // Get the current time
+    const now = new Date();
+
+    // Use the Intl.DateTimeFormat API to format the time
+    const timeOptions = {
+      hour: format.includes('h') ? 'numeric' : undefined,
+      minute: format.includes('m') ? 'numeric' : undefined,
+      second: format.includes('s') ? 'numeric' : undefined,
+      hour12: format.includes('12') ? undefined : false
+    } as const;
+    const formattedTime = new Intl.DateTimeFormat(this.culture, timeOptions).format(now);
+
+    // Update the formatted time element with the formatted time
+    this.timeElement.textContent = formattedTime;
+  }
+
+
+  private updateFormattedDate(format: string): void {
+    // Get the current date
+    const now = new Date();
+
+    // Use the Intl.DateTimeFormat API to format the date
+    const dateOptions = {
+      year: format.includes('y') ? 'numeric' : undefined,
+      month: format.includes('m') ? 'numeric' : undefined,
+      day: format.includes('d') ? 'numeric' : undefined,
+    } as const;
+    const formattedDate = new Intl.DateTimeFormat(this.culture, dateOptions).format(now);
+
+    // Update the formatted date element with the formatted date
+    this.dateElement.textContent = formattedDate;
+  }
+
   // Lifecycle callback that is called when the element is inserted into the DOM
   connectedCallback() {
-    this.updateTime();
-    setInterval(() => this.updateTime(), 1000);
+    if (this.dateFormat === '' && this.timeFormat === '') {
+      this.updateTime();
+      setInterval(() => this.updateTime(), 1000);
+    }
   }
 
   updateTime() {
@@ -54,5 +123,10 @@ export class DateTime extends HTMLElement {
     this.timeElement.textContent = now.toTimeString();
   }
 }
+declare global {
+  interface Window {
+    DateTimeElement: typeof DateTimeElement
+  }
+}
 // Define the custom element
-customElements.define('date-time', DateTime);
+customElements.define('date-time', DateTimeElement);
