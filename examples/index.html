@@ -4,12 +4,29 @@
 <head>
   <meta charset="utf-8" />
   <title>date-time demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="date-time custom element demo" />
+  <meta name="author" content="architrixs" />
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      line-height: 1.2;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    pre {
+      height: 110px;
+      background: #eee;
+      padding: 0.8rem;
+      margin: 1rem 0;
+    }
+  </style>
 </head>
 
 <body>
   <!-- description -->
   <h3>date-time custom element</h3>
-
   <pre>
     &lt;date-time time-format="hm" date-format="dmy" culture='en-US'&gt;&lt;/date-time&gt;
     <date-time time-format="hm" date-format="dmy" culture='en-US'></date-time>
@@ -20,10 +37,9 @@
   </pre>
   <pre>
     &lt;date-time&gt;&lt;/date-time&gt;
-    <date-time ></date-time>
+    <date-time></date-time>
   </pre>
   <script type="module">
-    // import 'https://unpkg.com/@github/date-time-boilerplate@latest/dist/date-time.js'
     import '../src/date-time.ts'
   </script>
 </body>
