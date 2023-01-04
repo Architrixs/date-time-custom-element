@@ -1,5 +1,5 @@
-import { assert } from '@open-wc/testing'
-import { DateTimeElement } from '../src/date-time'
+import {assert} from '@open-wc/testing'
+import {DateTimeElement} from '../src/date-time'
 
 // TODO: Add tests for your element
 describe('date-time', () => {
