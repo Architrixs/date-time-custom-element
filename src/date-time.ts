@@ -129,4 +129,11 @@ declare global {
   }
 }
 // Define the custom element
-customElements.define('date-time', DateTimeElement);
+//customElements.define('date-time', DateTimeElement);
+
+export default DateTimeElement
+
+if (!window.customElements.get('date-time')) {
+  window.DateTimeElement = DateTimeElement
+  window.customElements.define('date-time', DateTimeElement)
+}

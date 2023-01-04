@@ -15,30 +15,47 @@
       margin: 0 auto;
     }
 
-    pre {
-      height: 110px;
+    div {
+      height: 60px;
       background: #eee;
       padding: 0.8rem;
       margin: 1rem 0;
     }
+
+    date-time{
+      display: flex;
+      justify-content: center;
+      color: rgb(170, 26, 26);
+    }
+
   </style>
 </head>
 
 <body>
   <!-- description -->
-  <h3>date-time custom element</h3>
-  <pre>
+  <h3>&lt;date-time&gt; Custom Element</h3>
+  <div>
     &lt;date-time time-format="hm" date-format="dmy" culture='en-US'&gt;&lt;/date-time&gt;
-    <date-time time-format="hm" date-format="dmy" culture='en-US'></date-time>
-  </pre>
-  <pre>
-    &lt;date-time time-format="hm12" date-format="dmy" culture='hi-IN'&gt;&lt;/date-time&gt;
-    <date-time time-format="hm12" date-format="dm" culture='hi-IN'></date-time>
-  </pre>
-  <pre>
+    <date-time class="example-elmnt" time-format="hm" date-format="dmy" culture='en-US'></date-time>
+  </div>
+  <div>
+    &lt;date-time time-format="hm12" date-format="dm" culture='hi-IN'&gt;&lt;/date-time&gt;
+    <date-time class="example-elmnt" time-format="hm12" date-format="dm" culture='hi-IN'></date-time>
+  </div>
+  <div>
+    &lt;date-time time-format="hm" date-format="dm" culture='fr-FR'&gt;&lt;/date-time&gt;
+    <date-time class="example-elmnt" time-format="hm" date-format="dm" culture='fr-FR'></date-time>
+  </div>
+  <div>
     &lt;date-time&gt;&lt;/date-time&gt;
-    <date-time></date-time>
-  </pre>
+    <date-time class="example-elmnt" ></date-time>
+  </div>
+
+  <!-- made with love by Architrixs -->
+  <p style="text-align: center; font-size: 0.8rem; margin-top: 2rem;">
+    Made with <span style="color: #e25555;font-size: medium;">&hearts;</span> by
+    <a href="https://github.com/Architrixs/date-time-custom-element" target="_blank">Architrixs</a>
+  </p>
   <script type="module">
     import '../src/date-time.ts'
   </script>
