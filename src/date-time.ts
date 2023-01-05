@@ -8,12 +8,10 @@
 
 //import { DateTime } from './current-time';
 
-// Define the custom element
-//customElements.define('current-time', DateTime);
+class DateTimeElement extends HTMLElement {
+  // Attach a shadow root to the custom element
+  #shadowRoot = this.attachShadow({mode: 'open'})
 
-// The class for the custom element
-export class DateTimeElement extends HTMLElement {
-  public shadowRoot: ShadowRoot
   private dateElement: HTMLElement
   private timeElement: HTMLElement
   private culture = 'en-US'
@@ -23,15 +21,12 @@ export class DateTimeElement extends HTMLElement {
   static get observedAttributes(): string[] {
     return ['date-format', 'time-format', 'culture']
   }
+  // eslint-disable-next-line custom-elements/no-constructor
   constructor() {
     super()
-
-    // Attach a shadow root to the custom element
-    this.shadowRoot = this.attachShadow({mode: 'open'})
-
     // Add the template to the shadow root
     const template = document.createElement('template')
-
+    // eslint-disable-next-line github/no-inner-html
     template.innerHTML = `
       <style>
         #time-container {
@@ -50,11 +45,11 @@ export class DateTimeElement extends HTMLElement {
         <p id="time"></p>
       </div>
     `
-    this.shadowRoot.appendChild(template.content.cloneNode(true))
+    this.#shadowRoot.appendChild(template.content.cloneNode(true))
 
     // Get the date and time elements
-    this.dateElement = this.shadowRoot.querySelector('#date')!
-    this.timeElement = this.shadowRoot.querySelector('#time')!
+    this.dateElement = this.#shadowRoot.querySelector('#date')!
+    this.timeElement = this.#shadowRoot.querySelector('#time')!
   }
 
   // Update the element when the format attribute changes

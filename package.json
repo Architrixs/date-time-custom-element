@@ -14,7 +14,7 @@
   "scripts": {
     "clean": "rm -rf dist",
     "lint": "eslint . --ext .ts,.js",
-    "prebuild": "npm run clean && mkdir dist",
+    "prebuild": "npm run clean && npm run lint && mkdir dist",
     "build": "tsc",
     "pretest": "npm run build",
     "test": "web-test-runner \"test/**/*\" --node-resolve",

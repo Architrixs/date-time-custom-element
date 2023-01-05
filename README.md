@@ -1,6 +1,6 @@
-# &lt;custom-element&gt; element
+# &lt;date-time&gt; element
 
-Boilerplate for creating a custom element.
+A custom element that displays date and time.
 
 ## Installation
 Available on [npm](https://www.npmjs.com/) as [**@github/custom-element-element**](https://www.npmjs.com/package/@github/custom-element-element).
