@@ -1,6 +1,6 @@
 {
   "name": "@architrixs/date-time-element",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A custom element that displays a date and time.",
   "main": "dist/src/date-time.js",
   "module": "dist/src/date-time.js",
