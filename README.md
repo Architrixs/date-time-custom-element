@@ -1,6 +1,8 @@
 # &lt;date-time&gt; element
 
 A custom element that displays a date and time.
+<!-- DEMO -->
+[Demo](https://architrixs.github.io/date-time-custom-element/examples/index.html)
 
 ## Installation
 Available on [npm](https://www.npmjs.com/) as [**@architrixs/date-time-element**](https://www.npmjs.com/package/@architrixs/date-time-element).
@@ -21,7 +23,8 @@ import '@architrixs/date-time-element'
 Include with a script tag:
 
 ```html
-<script type="module" src="./node_modules/@architrixs/date-time-element/dist/date-time.js">
+<script type="module" src="./node_modules/@architrixs/date-time-element/dist/src/date-time.js">
+
 ```
 
 ## Browser support
